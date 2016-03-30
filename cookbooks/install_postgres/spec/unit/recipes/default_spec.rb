@@ -1,12 +1,12 @@
 #
-# Cookbook Name:: odoo_install
+# Cookbook Name:: install_postgres
 # Spec:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 require 'spec_helper'
 
-describe 'odoo_install::default' do
+describe 'install_postgres::default' do
   context 'When all attributes are default, on an unspecified platform' do
     let(:chef_run) do
       runner = ChefSpec::ServerRunner.new

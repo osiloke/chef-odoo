@@ -17,5 +17,5 @@ platforms:
 suites:
   - name: default
     run_list:
-      - recipe[odoo_install::default]
+      - recipe[install_apache::default]
     attributes:

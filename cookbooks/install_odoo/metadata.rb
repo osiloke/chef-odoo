@@ -1,0 +1,7 @@
+name 'install_odoo'
+maintainer 'The Authors'
+maintainer_email 'you@example.com'
+license 'all_rights'
+description 'Installs/Configures install_odoo'
+long_description 'Installs/Configures install_odoo'
+version '0.1.0'
