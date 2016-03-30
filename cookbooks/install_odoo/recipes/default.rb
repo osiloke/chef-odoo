@@ -4,4 +4,5 @@
 #
 # Copyright (c) 2016 Michael Doederlein, All Rights Reserved.
 include_recipe 'apt::default'
+include_recipe 'install_odoo::postgresql'
 include_recipe 'install_odoo::add_user'
