@@ -2,4 +2,6 @@
 # Cookbook Name:: install_odoo
 # Recipe:: default
 #
-# Copyright (c) 2016 The Authors, All Rights Reserved.
+# Copyright (c) 2016 Michael Doederlein, All Rights Reserved.
+include_recipe 'apt::default'
+include_recipe 'install_odoo::add_user'
