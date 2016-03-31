@@ -1,26 +1,34 @@
-#
 # Cookbook Name:: install_odoo
 # Recipe:: add_user
 #
 # Copyright (c) 2016 Michael Doederlein, All Rights Reserved.
 
-group 'odoo group' do
+# add group
+group 'add odoo group' do
   action :create
-  group_name 'odoo'
+  group_name node['install_odoo']['group']
 end
 
-user 'odoo user' do
-  username 'odoo'
+# add user
+user node['install_odoo']['user'] do
   comment 'odoo system user'
   system true
-  shell '/bin/bash'
-  home '/opt/odoo'
-  group 'odoo'
+  shell '/bin/false'
+  home node['install_odoo']['homedir']
+  manage_home true
+  group node['install_odoo']['group']
 end
 
+# add odoo user to sudo group
 group 'add odoo to sudo' do
   action :modify
   group_name 'sudo'
-  members 'odoo'
+  members node['install_odoo']['user']
   append true
+end
+
+# paths
+directory '/var/log/odoo' do
+  owner node['install_odoo']['user']
+  group 'root'
 end
