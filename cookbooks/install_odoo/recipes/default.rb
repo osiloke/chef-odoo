@@ -6,4 +6,4 @@
 include_recipe 'apt::default'
 include_recipe 'install_odoo::add_user'
 include_recipe 'install_odoo::postgresql'
-include_recipe 'install_odoo::apt_get'
+include_recipe 'install_odoo::install_packages'
