@@ -6,3 +6,5 @@ default['install_odoo']['webkit_package'] = 'wkhtmltox-0.12.2.1_linux-trusty-amd
 default['install_odoo']['git_odoo_repository'] = 'https://github.com/odoo/odoo.git'
 default['install_odoo']['git_odoo_branch'] = '9.0'
 default['install_odoo']['custom_addons'] = '/opt/odoo/custom/addons'
+default['install_odoo']['admin_passwd'] = 'foobar01'
+default['install_odoo']['logfile'] = '/var/log/odoo/odoo-server.log'

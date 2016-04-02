@@ -26,9 +26,3 @@ group 'add odoo to sudo' do
   members node['install_odoo']['user']
   append true
 end
-
-# paths
-directory '/var/log/odoo' do
-  owner node['install_odoo']['user']
-  group 'root'
-end

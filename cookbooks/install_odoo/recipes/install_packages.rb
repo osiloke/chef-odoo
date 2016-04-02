@@ -11,26 +11,29 @@ execute 'npm-packages' do
   command 'npm install -g less less-plugin-clean-css'
 end
 
-# install webkit
+# download webkit
 execute 'wget-download' do
   cwd '/tmp'
   command "wget #{node['install_odoo']['webkit_url']}/#{node['install_odoo']['webkit_package']}"
   not_if { File.exist?("/tmp/#{node['install_odoo']['webkit_package']}") }
 end
 
-dpkg_package "'/tmp/#{node['install_odoo']['webkit_package']}'" do
-  ignore_failure true
+# install further dependencies for webkit
+package ['fontconfig', 'libfontconfig1', 'libx11-6', 'libxext6', 'libxrender1', 'xfonts-base', 'xfonts-75dpi']
+
+# install webkit
+execute "install-wkthmltox" do
+  command "dpkg -i /tmp/#{node['install_odoo']['webkit_package']}"
+#  returns [0, 1]
 end
 
-execute "install-wkhtmltox-deps" do
-  command "apt-get install -f -y"
-end
-
+# copy webkit to target location
 execute 'copy-files' do
   command 'cp /usr/local/bin/wkhtmltopdf /usr/bin && cp /usr/local/bin/wkhtmltoimage /usr/bin'
-  not_if { File.exist?("/usr/local/bin/wkhtmltopdf") }
+  not_if { File.exist?("/usr/bin/wkhtmltopdf") }
 end
 
+# clearance
 execute 'delete-sources' do
   command "rm '/tmp/#{node['install_odoo']['webkit_package']}'"
   only_if { File.exist?("/tmp/#{node['install_odoo']['webkit_package']}") }
